@@ -1,7 +1,7 @@
 @font-face {
 	font-family: 'Futura PT';
 	src: url('../fonts/FuturaPTBook.woff2') format('woff2'),
-		url('../fonts/FuturaPTBook.woff') format(woff);
+		url('../fonts/FuturaPTBook.woff') format('woff');
 	font-display: swap;
 	font-weight: 400;
 	font-style: normal;
@@ -10,14 +10,14 @@
 @font-face {
 	font-family: 'Futura PT';
 	src: url('../fonts/FuturaPTMedium.woff2') format('woff2'),
-		url('../fonts/FuturaPTMedium.woff') format(woff);
+		url('../fonts/FuturaPTMedium.woff') format('woff');
 	font-display: swap;
-	font-weight: 500;
+	font-weight: 450;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: 'Futura PT';
+	font-family: "Futura PT";
 	src: url('../fonts/FuturaPTLight.woff2') format('woff2'),
 		url('../fonts/FuturaPTLight.woff') format(woff);
 	font-display: swap;
@@ -54,12 +54,16 @@ img {
 :root {
 	--accent-color: #5d71dd;
 	--dark-color: #2f2222;
-} /*занесли цвет в переменную*/
+	--grid-gap: 40px;
+	/*отступ*/
+}
+
+/*переменные*/
 
 body {
 	margin: 0;
 	overflow-anchor: none;
-	font-family: 'Future PT', sans-serif;
+	font-family: "Futura PT", sans-serif;
 	font-weight: 400;
 	background-color: #f9f9f9;
 }
@@ -94,8 +98,8 @@ body {
 	justify-content: space-between;
 }
 
-.header__logo{
-	transform: translateY(3px);
+.header__logo {
+	transform: translateY(5px);
 }
 
 .header__right {
@@ -103,7 +107,7 @@ body {
 	align-items: center;
 }
 
-.header__nav{
+.header__nav {
 	margin-right: 40px;
 }
 
@@ -113,39 +117,38 @@ body {
 }
 
 .nav__item:not(:last-child) {
-	margin-right: 40px;
+	margin-right: 41px;
 }
 
-.nav__link{
-	font-size: 16px;
-	line-height: 32px;
+.nav__link {
+	font-size: 18px;
 	color: var(--dark-color);
 }
 
-.nav__link--current{
+.nav__link--current {
 	color: var(--accent-color);
 	position: relative;
-	padding-bottom: 1px;
 }
 
-.nav__link--current::after{
+.nav__link--current::after {
 	content: '';
 	position: absolute;
 	left: 0;
 	bottom: 0;
 	width: 100%;
 	height: 1px;
-	background-color: currentColor; /*текущий цвет*/
+	background-color: currentColor;
+	/*текущий цвет*/
 }
 
 .phone {
 	font-size: 18px;
-	font-weight: 500;
+	font-weight: 450;
 	color: var(--accent-color);
 	background-image: url('../images/phone.svg');
 	background-repeat: no-repeat;
 	background-position: left center;
-	padding-left: 20px;
+	padding-left: 27px;
 }
 
 .banner {
@@ -154,4 +157,109 @@ body {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
+}
+
+/*content*/
+
+.content {
+	padding-top: var(--grid-gap);
+}
+
+.content__container {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	/* определяем количество - 4, размер столбцов -1fr */
+	gap: var(--grid-gap);
+	/*отступ*/
+}
+
+.articles {
+	grid-column: 3 span;
+	/*занимает 3 колонки, span - растягивается на 3*/
+}
+
+.article__grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	/* вся ширина = 3 колонки */
+	gap: var(--grid-gap);
+	/*отступ*/
+	grid-template-rows: repeat(8, 180px);
+	/* вся высота = 8 строк по 180px*/
+}
+
+.article__grid-item:nth-child(5n+1) {
+	grid-column: 2 span;
+	/* 2 колонки по ширине*/
+	grid-row: 2 span;
+	/* 2 колонки по высоте*/
+}
+
+/*5n+1 - через пять элементов снова будет первый*/
+
+.article__grid-item:nth-child(5n+2) {
+	grid-row: 2 span;
+	/* 2 колонки по высоте*/
+}
+
+.article__grid-item:nth-child(5n+3) {
+	grid-row: 2 span;
+	/* 2 колонки по высоте*/
+}
+
+.article__grid-item:nth-child(5n+4) {
+	grid-column: 2 span;
+	/* 2 колонки по ширине*/
+}
+
+.article__grid-item:nth-child(5n+5) {
+	grid-column: 2 span;
+	/* 2 колонки по ширине*/
+}
+
+.blog__article {
+	padding-top: 44px;
+	padding-left: 38px;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	border-radius: 20px;
+	position: relative;
+}
+
+.blog__article-category {
+	position: relative;
+	z-index: 5;
+	margin-bottom: 30px;
+	display: inline-block;
+	/*для работы padding*/
+	border-radius: 8px;
+	padding: 8px 17px;
+	font-size: 16px;
+	line-height: 21px;
+	color: var(--accent-color);
+	background-color: #f7f8fD;
+}
+
+.blog__article-title {
+	margin: 0;
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 31px;
+	letter-spacing: 0.11px;
+	color: var(--dark-color);
+}
+
+.blog__article-link::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.blog__article--main {
+	height: 280px;
+	margin-bottom: var(--grid-gap);
 }
